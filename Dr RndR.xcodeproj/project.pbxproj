@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F11A0542BEB9000007C125A /* ScanSCNViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11A0532BEB9000007C125A /* ScanSCNViewTableViewCell.swift */; };
+		3F202E5C2BF00C18005DB6AB /* SaveModelPromptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F202E5B2BF00C18005DB6AB /* SaveModelPromptViewController.swift */; };
 		4627F1B82BE3BA6100D3CB67 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4627F1B72BE3BA6100D3CB67 /* DataModel.swift */; };
-		46A176A02BE5220900DA6F47 /* Room.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 46A1769F2BE5220900DA6F47 /* Room.usdz */; };
+		4648B2BA2BEE93B9004F4F62 /* CollectionViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4648B2B92BEE93B9004F4F62 /* CollectionViewDataModel.swift */; };
+		4648B2BC2BEE93D3004F4F62 /* HomePageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4648B2BB2BEE93D3004F4F62 /* HomePageDataModel.swift */; };
+		46ADC7852BEE9A5700BD9750 /* ARViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ADC7842BEE9A5700BD9750 /* ARViewDataModel.swift */; };
 		46D105802BE259B4005D7A64 /* AppOnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D1057F2BE259B4005D7A64 /* AppOnBoardingViewController.swift */; };
 		46D987B72BE39C8500D0234F /* DisplayModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D987B62BE39C8500D0234F /* DisplayModelViewController.swift */; };
+		D10DA9432BEB3408001BBB6B /* TutorialARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9422BEB3408001BBB6B /* TutorialARViewController.swift */; };
+		D10DA9452BEB4458001BBB6B /* SCNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DA9442BEB4458001BBB6B /* SCNViewController.swift */; };
 		D169859A2BDABEC9004AE019 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16985992BDABEC9004AE019 /* AccountSettingsViewController.swift */; };
-		D19823762BD9B04D00B50C95 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19823752BD9B04D00B50C95 /* MyCollectionViewCell.swift */; };
+		D16E52342BE6B52100F146A3 /* HomeTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16E52332BE6B52100F146A3 /* HomeTableCellTableViewCell.swift */; };
+		D189C72C2BE9EF42009FF109 /* Chair.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D189C72B2BE9EF42009FF109 /* Chair.usdz */; };
+		D189C72E2BE9EF60009FF109 /* RoomCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D189C72D2BE9EF60009FF109 /* RoomCaptureViewController.swift */; };
+		D189C7302BE9EF97009FF109 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D189C72F2BE9EF97009FF109 /* OnboardingViewController.swift */; };
+		D189C7322BE9F51E009FF109 /* ScansDisplayModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D189C7312BE9F51E009FF109 /* ScansDisplayModelViewController.swift */; };
+		D189C7362BEA0779009FF109 /* ModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D189C7352BEA0779009FF109 /* ModelViewController.swift */; };
+		D189C73A2BEA3066009FF109 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D189C7392BEA3066009FF109 /* AddViewController.swift */; };
 		D1AFC4562BDAE8EF00318713 /* ScansCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AFC4542BDAE8EF00318713 /* ScansCollectionViewCell.swift */; };
 		D1AFC4572BDAE8EF00318713 /* ScansCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1AFC4552BDAE8EF00318713 /* ScansCollectionViewCell.xib */; };
-		D1B410142BE1800800A3CC30 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B410132BE1800800A3CC30 /* OnboardingViewController.swift */; };
-		D1B410162BE1800E00A3CC30 /* RoomCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B410152BE1800E00A3CC30 /* RoomCaptureViewController.swift */; };
 		D1BBA8042BCF27F5002F2A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BBA8032BCF27F5002F2A66 /* AppDelegate.swift */; };
 		D1BBA8062BCF27F5002F2A66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BBA8052BCF27F5002F2A66 /* SceneDelegate.swift */; };
 		D1BBA8082BCF27F5002F2A66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BBA8072BCF27F5002F2A66 /* ViewController.swift */; };
@@ -48,16 +58,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F11A0532BEB9000007C125A /* ScanSCNViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSCNViewTableViewCell.swift; sourceTree = "<group>"; };
+		3F202E5B2BF00C18005DB6AB /* SaveModelPromptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveModelPromptViewController.swift; sourceTree = "<group>"; };
 		4627F1B72BE3BA6100D3CB67 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		46A1769F2BE5220900DA6F47 /* Room.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Room.usdz; path = ../../../../Downloads/Export/Room.usdz; sourceTree = "<group>"; };
+		4648B2B92BEE93B9004F4F62 /* CollectionViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataModel.swift; sourceTree = "<group>"; };
+		4648B2BB2BEE93D3004F4F62 /* HomePageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageDataModel.swift; sourceTree = "<group>"; };
+		46ADC7842BEE9A5700BD9750 /* ARViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewDataModel.swift; sourceTree = "<group>"; };
 		46D1057F2BE259B4005D7A64 /* AppOnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOnBoardingViewController.swift; sourceTree = "<group>"; };
 		46D987B62BE39C8500D0234F /* DisplayModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayModelViewController.swift; sourceTree = "<group>"; };
+		D10DA9422BEB3408001BBB6B /* TutorialARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialARViewController.swift; sourceTree = "<group>"; };
+		D10DA9442BEB4458001BBB6B /* SCNViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNViewController.swift; sourceTree = "<group>"; };
 		D16985992BDABEC9004AE019 /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
-		D19823752BD9B04D00B50C95 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		D16E52332BE6B52100F146A3 /* HomeTableCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableCellTableViewCell.swift; sourceTree = "<group>"; };
+		D189C72B2BE9EF42009FF109 /* Chair.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Chair.usdz; sourceTree = "<group>"; };
+		D189C72D2BE9EF60009FF109 /* RoomCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCaptureViewController.swift; sourceTree = "<group>"; };
+		D189C72F2BE9EF97009FF109 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		D189C7312BE9F51E009FF109 /* ScansDisplayModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScansDisplayModelViewController.swift; sourceTree = "<group>"; };
+		D189C7352BEA0779009FF109 /* ModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewController.swift; sourceTree = "<group>"; };
+		D189C7392BEA3066009FF109 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		D1AFC4542BDAE8EF00318713 /* ScansCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScansCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1AFC4552BDAE8EF00318713 /* ScansCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScansCollectionViewCell.xib; sourceTree = "<group>"; };
-		D1B410132BE1800800A3CC30 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = ../../../../Downloads/CreateA3DModelOfAnInteriorRoomByGuidingTheUserThroughAnARExperience/RoomPlanExampleApp/OnboardingViewController.swift; sourceTree = "<group>"; };
-		D1B410152BE1800E00A3CC30 /* RoomCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoomCaptureViewController.swift; path = ../../../../Downloads/CreateA3DModelOfAnInteriorRoomByGuidingTheUserThroughAnARExperience/RoomPlanExampleApp/RoomCaptureViewController.swift; sourceTree = "<group>"; };
 		D1BBA8002BCF27F5002F2A66 /* Dr RndR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dr RndR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1BBA8032BCF27F5002F2A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1BBA8052BCF27F5002F2A66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,16 +184,23 @@
 		D1FE5B5D2BCF2A4700CCDDED /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D1B410132BE1800800A3CC30 /* OnboardingViewController.swift */,
-				D1B410152BE1800E00A3CC30 /* RoomCaptureViewController.swift */,
 				D1FF9E972BD2394F00C4CEB4 /* ProfileTableViewController.swift */,
 				D1BBA8072BCF27F5002F2A66 /* ViewController.swift */,
-				D19823752BD9B04D00B50C95 /* MyCollectionViewCell.swift */,
+				D16E52332BE6B52100F146A3 /* HomeTableCellTableViewCell.swift */,
 				D16985992BDABEC9004AE019 /* AccountSettingsViewController.swift */,
 				D1F192602BDAE2560008B42A /* ScansViewController.swift */,
 				D1AFC4542BDAE8EF00318713 /* ScansCollectionViewCell.swift */,
 				46D987B62BE39C8500D0234F /* DisplayModelViewController.swift */,
 				46D1057F2BE259B4005D7A64 /* AppOnBoardingViewController.swift */,
+				D189C72D2BE9EF60009FF109 /* RoomCaptureViewController.swift */,
+				3F202E5B2BF00C18005DB6AB /* SaveModelPromptViewController.swift */,
+				D189C72F2BE9EF97009FF109 /* OnboardingViewController.swift */,
+				D189C7312BE9F51E009FF109 /* ScansDisplayModelViewController.swift */,
+				D189C7352BEA0779009FF109 /* ModelViewController.swift */,
+				D189C7392BEA3066009FF109 /* AddViewController.swift */,
+				D10DA9422BEB3408001BBB6B /* TutorialARViewController.swift */,
+				D10DA9442BEB4458001BBB6B /* SCNViewController.swift */,
+				3F11A0532BEB9000007C125A /* ScanSCNViewTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,7 +209,10 @@
 			isa = PBXGroup;
 			children = (
 				4627F1B72BE3BA6100D3CB67 /* DataModel.swift */,
-				46A1769F2BE5220900DA6F47 /* Room.usdz */,
+				46ADC7842BEE9A5700BD9750 /* ARViewDataModel.swift */,
+				4648B2B92BEE93B9004F4F62 /* CollectionViewDataModel.swift */,
+				4648B2BB2BEE93D3004F4F62 /* HomePageDataModel.swift */,
+				D189C72B2BE9EF42009FF109 /* Chair.usdz */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,8 +324,8 @@
 				D1BBA80D2BCF27F6002F2A66 /* Assets.xcassets in Resources */,
 				D1BBA8102BCF27F6002F2A66 /* Base in Resources */,
 				D1BBA80B2BCF27F5002F2A66 /* Base in Resources */,
+				D189C72C2BE9EF42009FF109 /* Chair.usdz in Resources */,
 				D1AFC4572BDAE8EF00318713 /* ScansCollectionViewCell.xib in Resources */,
-				46A176A02BE5220900DA6F47 /* Room.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,19 +350,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10DA9432BEB3408001BBB6B /* TutorialARViewController.swift in Sources */,
+				3F202E5C2BF00C18005DB6AB /* SaveModelPromptViewController.swift in Sources */,
+				D189C7302BE9EF97009FF109 /* OnboardingViewController.swift in Sources */,
 				D1BBA8082BCF27F5002F2A66 /* ViewController.swift in Sources */,
+				D189C7322BE9F51E009FF109 /* ScansDisplayModelViewController.swift in Sources */,
+				4648B2BA2BEE93B9004F4F62 /* CollectionViewDataModel.swift in Sources */,
+				4648B2BC2BEE93D3004F4F62 /* HomePageDataModel.swift in Sources */,
 				46D105802BE259B4005D7A64 /* AppOnBoardingViewController.swift in Sources */,
+				D189C72E2BE9EF60009FF109 /* RoomCaptureViewController.swift in Sources */,
 				D1F192612BDAE2560008B42A /* ScansViewController.swift in Sources */,
-				D19823762BD9B04D00B50C95 /* MyCollectionViewCell.swift in Sources */,
 				D1FF9E982BD2394F00C4CEB4 /* ProfileTableViewController.swift in Sources */,
-				D1B410162BE1800E00A3CC30 /* RoomCaptureViewController.swift in Sources */,
 				4627F1B82BE3BA6100D3CB67 /* DataModel.swift in Sources */,
+				46ADC7852BEE9A5700BD9750 /* ARViewDataModel.swift in Sources */,
+				D189C7362BEA0779009FF109 /* ModelViewController.swift in Sources */,
 				D1BBA8042BCF27F5002F2A66 /* AppDelegate.swift in Sources */,
+				D189C73A2BEA3066009FF109 /* AddViewController.swift in Sources */,
+				D16E52342BE6B52100F146A3 /* HomeTableCellTableViewCell.swift in Sources */,
+				D10DA9452BEB4458001BBB6B /* SCNViewController.swift in Sources */,
 				D1BBA8062BCF27F5002F2A66 /* SceneDelegate.swift in Sources */,
 				D169859A2BDABEC9004AE019 /* AccountSettingsViewController.swift in Sources */,
-				D1B410142BE1800800A3CC30 /* OnboardingViewController.swift in Sources */,
 				46D987B72BE39C8500D0234F /* DisplayModelViewController.swift in Sources */,
 				D1AFC4562BDAE8EF00318713 /* ScansCollectionViewCell.swift in Sources */,
+				3F11A0542BEB9000007C125A /* ScanSCNViewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,9 +554,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 34658349V4;
+				DEVELOPMENT_TEAM = 4FU3RXR748;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Dr RndR/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera useage for room scanning";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -528,7 +569,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = metatech;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MetaTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -543,9 +584,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 34658349V4;
+				DEVELOPMENT_TEAM = 4FU3RXR748;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Dr RndR/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera useage for room scanning";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -557,7 +599,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = metatech;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MetaTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

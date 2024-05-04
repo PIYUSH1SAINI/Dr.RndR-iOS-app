@@ -1,0 +1,279 @@
+import UIKit
+import ARKit
+
+class DisplayModelViewController: UIViewController, ARSCNViewDelegate {
+    
+    @IBOutlet weak var sceneView: ARSCNView!
+    
+    var modelURL: URL?
+    var chairNode: SCNNode? // Declare chairNode as an instance variable
+    var roomAnchor: ARAnchor? // Store the room anchor
+    var modelName: String = ""
+
+    // Global variables
+    var scaleFactor: Float = 1.0
+    var rotationX: Float = 0.0
+    var rotationY: Float = 0.0
+    var translationX: Float = 0.0
+    var translationY: Float = 0.0
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewTutorial()
+            
+        sceneView.delegate = self
+        
+        sceneView.isUserInteractionEnabled = true
+        
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
+        sceneView.session.run(configuration)
+
+        // Create a new anchor and set it as the room anchor
+        let anchor = ARAnchor(transform: matrix_identity_float4x4)
+        sceneView.session.add(anchor: anchor)
+        roomAnchor = anchor
+        
+        // Add a tap gesture recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        sceneView.addGestureRecognizer(tapGesture)
+        
+        // Add gesture recognizers
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        sceneView.addGestureRecognizer(panGesture)
+        
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(_:)))
+        sceneView.addGestureRecognizer(pinchGesture)
+        
+        let rotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(handleRotation(_:)))
+        sceneView.addGestureRecognizer(rotateGesture)
+        
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        sceneView.addGestureRecognizer(doubleTapGesture)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        sceneView.addGestureRecognizer(longPressGesture)
+        
+
+        if let modelURL = modelURL {
+            initialModelName = getModelNameFromURL(modelURL)
+        } else {
+            print("No model URL provided.")
+        }
+
+        if let modelURL = modelURL {
+            displayModel(from: modelURL)
+        } else {
+            print("No model URL provided.")
+        }
+    }
+    
+    func viewTutorial(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let displayModelVC = storyboard.instantiateViewController(withIdentifier: "TutorialARViewController") as? TutorialARViewController {
+                    let navigationController = UINavigationController(rootViewController: displayModelVC)
+                    present(navigationController, animated: true, completion: nil)
+                }
+    }
+    
+    var initialModelName: String?
+
+    // Function to handle pinch gesture for scaling
+    @objc func handlePinch(_ gesture: UIPinchGestureRecognizer) {
+        guard gesture.state == .changed else { return }
+        
+        // Get the current scale of the model node
+        guard let modelNode = sceneView.scene.rootNode.childNode(withName: modelName, recursively: true) else { return }
+        let currentScale = modelNode.scale
+        
+        // Adjust the scale based on the pinch gesture
+        let newScale = SCNVector3(x: currentScale.x * Float(gesture.scale),
+                                  y: currentScale.y * Float(gesture.scale),
+                                  z: currentScale.z * Float(gesture.scale))
+        
+        // Apply the new scale to the model node
+        modelNode.scale = newScale
+        
+        // Reset the scale gesture recognizer's scale to 1
+        gesture.scale = 1.0
+    }
+
+
+    @objc func handleTap(_ gesture: UITapGestureRecognizer) {
+            let location = gesture.location(in: sceneView)
+            let hitResults = sceneView.hitTest(location, options: nil)
+
+            if let modelName = getModelName(fromTap: gesture) {
+                print("Model name: \(modelName)")
+                // Set the modelName to initialModelName
+                self.modelName = initialModelName ?? ""
+            }
+        }
+
+
+    func getModelNameFromURL(_ url: URL) -> String? {
+        // Get the last path component of the URL
+        let lastPathComponent = url.lastPathComponent
+        
+        // Split the last path component by the "." character
+        let components = lastPathComponent.components(separatedBy: ".")
+        
+        // The model name could be the first component before the extension
+        if let modelName = components.first {
+            return modelName
+        }
+        
+        // If the above approach doesn't work, you may need to customize the logic based on your URL structure
+        return nil
+    }
+
+    func getModelName(fromTap gesture: UITapGestureRecognizer) -> String? {
+        let location = gesture.location(in: sceneView)
+        let hitResults = sceneView.hitTest(location, options: nil)
+        
+        if let result = hitResults.first {
+            if let nodeName = result.node.name {
+                return nodeName
+            }
+        }
+        return nil
+    }
+
+    @objc func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: sceneView)
+        let hitResults = sceneView.hitTest(location, options: nil)
+        
+        if let result = hitResults.first {
+            if let nodeName = result.node.name {
+                print("Model name: \(nodeName)")
+                // Set the modelName field
+                modelName = nodeName
+            }
+        }
+    }
+    
+    @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+            if gesture.state == .began {
+                let location = gesture.location(in: sceneView)
+                let hitResults = sceneView.hitTest(location, options: nil)
+                
+                if let result = hitResults.first {
+                    let tappedNode = result.node
+                    print("Node tapped:- \(tappedNode)")
+                    
+                    // Apply texture to the tapped node's geometry
+                    if let geometry = tappedNode.geometry {
+                                     geometry.firstMaterial?.diffuse.contents = UIColor(.blue)
+                                       print(geometry.firstMaterial)
+                                    }
+                }
+                
+                if let result = hitResults.first {
+                    let tappedNode = result.node
+                    print("Node long pressed: \(tappedNode)")
+                    
+                    // You can perform any action here when a node is long pressed
+                    // For example, change its color or perform some animation
+                }
+            }
+        }
+
+    // Function to handle pan gesture for translation
+    // Function to handle pan gesture for translation
+    @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
+        guard gesture.state == .changed else { return }
+        
+        // Get the translation in the sceneView's coordinate system
+        let translation = gesture.translation(in: sceneView)
+        
+        // Get the model node from the scene graph
+        guard let modelNode = sceneView.scene.rootNode.childNode(withName: modelName, recursively: true) else { return }
+        
+        // Calculate the new position based on the translation along the x and y axes
+        let currentPosition = modelNode.position
+        let newPosition = SCNVector3(x: currentPosition.x + Float(translation.x / 100),
+                                     y: currentPosition.y - Float(translation.y / 100), // Inverted y translation for moving along the y-axis
+                                     z: currentPosition.z)
+        
+        // Apply the new position to the model node
+        modelNode.position = newPosition
+        
+        // Reset the gesture's translation to avoid cumulative movement
+        gesture.setTranslation(.zero, in: sceneView)
+    }
+
+
+    // Function to handle rotation gesture
+    @objc func handleRotation(_ gesture: UIRotationGestureRecognizer) {
+        guard gesture.state == .changed else { return }
+        
+        // Get the model node from the scene graph
+        guard let modelNode = sceneView.scene.rootNode.childNode(withName: modelName, recursively: true) else { return }
+        // Apply the rotation to the model node
+        modelNode.eulerAngles.y -= Float(gesture.rotation)
+        
+        // Reset the gesture's rotation to avoid cumulative rotation
+        gesture.rotation = 0
+    }
+    
+    // Function to display the 3D model
+    func displayModel(from url: URL) {
+        do {
+            // Load the scene from the provided URL
+            let scene = try SCNScene(url: url)
+            
+            // Add lighting to the scene
+            let lightNode = SCNNode()
+            lightNode.light = SCNLight()
+            lightNode.light?.type = .omni
+            lightNode.position = SCNVector3(x: 0, y: 10, z: 20)
+            scene.rootNode.addChildNode(lightNode)
+            
+            let ambientLightNode = SCNNode()
+            ambientLightNode.light = SCNLight()
+            ambientLightNode.light?.type = .ambient
+            ambientLightNode.light?.color = UIColor.darkGray
+            scene.rootNode.addChildNode(ambientLightNode)
+            
+            // Load the chair model
+            if let chairScene = SCNScene(named: "Chair.usdz") {
+                // Assuming the chair model is the root node of the chair scene
+                chairNode = chairScene.rootNode
+                // Set the position and scale of the chair node as needed
+                chairNode?.position = SCNVector3(x: 0, y: 0, z: 0)
+                chairNode?.scale = SCNVector3(x: 0.001, y: 0.001, z: 0.001) // Adjust scale as needed
+                
+                // Add the chair node as a child of the room node
+                scene.rootNode.addChildNode(chairNode!)
+            } else {
+                print("Failed to load chair model.")
+            }
+            
+            // Set up the scene view
+            sceneView.scene = scene
+            sceneView.backgroundColor = UIColor.black
+        } catch {
+            print("Error loading scene: \(error.localizedDescription)")
+        }
+    }
+ 
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+//        print("renderer")
+        // Check if the updated anchor is the room anchor
+        if anchor == roomAnchor, let chairNode = chairNode {
+            // Update the position and rotation of the chair node based on the room anchor's transformations
+            let transform = SCNMatrix4(anchor.transform) // Convert ARAnchor's transform to SCNMatrix4
+            let position = SCNVector3(transform.m41, transform.m42, transform.m43) // Extract position
+            let rotation = SCNVector4(transform.m11, transform.m12, transform.m13, transform.m14) // Extract rotation
+            
+            chairNode.position = position
+            chairNode.rotation = rotation
+        }
+    }
+}

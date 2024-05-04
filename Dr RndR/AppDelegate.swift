@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Dr RndR
-//
-//  Created by Prabal Kumar on 17/04/24.
-//
-
 import UIKit
 
 @main

@@ -38,17 +38,47 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URb-NV-t0d">
+                                <rect key="frame" x="120" y="10" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="TmU-dd-8sT"/>
+                                    <constraint firstAttribute="height" constant="50" id="iBN-IH-fYV"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="tkL-wt-5Lv"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="3D"/>
+                                <connections>
+                                    <action selector="didTapThreeDButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="e4S-ey-YmX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2P3-X5-as6">
+                                <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ry6-nm-BeA"/>
+                                    <constraint firstAttribute="width" constant="50" id="YDS-HK-KSf"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="AR"/>
+                                <connections>
+                                    <action selector="didTapARButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="NYD-X1-Lp9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="quaternaryLabelColor"/>
                         <constraints>
-                            <constraint firstItem="Uqd-ky-mbZ" firstAttribute="centerX" secondItem="BCe-5T-b9p" secondAttribute="centerX" id="3Lm-2i-Y2z"/>
                             <constraint firstAttribute="trailing" secondItem="AR9-ol-ofG" secondAttribute="trailing" id="9Ai-3I-KBc"/>
                             <constraint firstAttribute="bottom" secondItem="AR9-ol-ofG" secondAttribute="bottom" constant="10" id="A13-NV-RKd"/>
                             <constraint firstItem="AR9-ol-ofG" firstAttribute="leading" secondItem="BCe-5T-b9p" secondAttribute="leading" id="SS1-we-Rts"/>
+                            <constraint firstItem="URb-NV-t0d" firstAttribute="top" secondItem="BCe-5T-b9p" secondAttribute="top" constant="10" id="Uev-Lr-FNh"/>
                             <constraint firstItem="Uqd-ky-mbZ" firstAttribute="leading" secondItem="AR9-ol-ofG" secondAttribute="leading" id="dKB-eq-p35"/>
                             <constraint firstItem="Uqd-ky-mbZ" firstAttribute="top" secondItem="BCe-5T-b9p" secondAttribute="top" id="dXi-SO-UsY"/>
                             <constraint firstItem="AR9-ol-ofG" firstAttribute="top" secondItem="Uqd-ky-mbZ" secondAttribute="bottom" constant="10" id="fvJ-Us-NvZ"/>
+                            <constraint firstAttribute="trailing" secondItem="URb-NV-t0d" secondAttribute="trailing" constant="10" id="lRW-8k-S1B"/>
+                            <constraint firstItem="2P3-X5-as6" firstAttribute="top" secondItem="BCe-5T-b9p" secondAttribute="top" constant="10" id="m0y-xP-GvI"/>
                             <constraint firstItem="Uqd-ky-mbZ" firstAttribute="trailing" secondItem="AR9-ol-ofG" secondAttribute="trailing" id="o4p-yj-yHh"/>
+                            <constraint firstItem="2P3-X5-as6" firstAttribute="leading" secondItem="BCe-5T-b9p" secondAttribute="leading" constant="10" id="t5c-fg-pag"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -66,16 +96,18 @@
                 <constraint firstItem="BCe-5T-b9p" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xyQ-Nk-jht"/>
             </constraints>
             <connections>
+                <outlet property="arButton" destination="2P3-X5-as6" id="rBq-H4-yRQ"/>
                 <outlet property="scanImageView" destination="Uqd-ky-mbZ" id="FdH-0E-JJ8"/>
                 <outlet property="scanLabelView" destination="AR9-ol-ofG" id="Ib3-DZ-wjh"/>
+                <outlet property="threeDButton" destination="URb-NV-t0d" id="qjr-T5-sIn"/>
             </connections>
-            <point key="canvasLocation" x="-12" y="-12"/>
+            <point key="canvasLocation" x="-12.213740458015266" y="-12.67605633802817"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="scan" width="1179" height="1518"/>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -1,82 +1,92 @@
-//
-//  ViewController.swift
-//  Dr RndR
-//
-//  Created by Prabal Kumar on 17/04/24.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+// View controller responsible for managing the home screen
+class ViewController: UIViewController, UITableViewDataSource, homeTableViewCellDelegate {
     
-    var myScanImages = ["scan","scan","scan","scan","scan"]
-
-    @IBOutlet weak var scansCard: UIView!
+    // Data manager responsible for managing rooms
+    let roomDataManager = RoomDataManager.shared
     
-    @IBOutlet var scansCardTwo: UIView!
-    
-    @IBOutlet var scansCardThree: UIView!
-    
-    @IBOutlet var scansCardFour: UIView!
-    
-    @IBOutlet var scansCardFive: UIView!
-    
-    
-    
-    
-    @IBOutlet var myCollectionView: UICollectionView!
-
-
-
+    // Table view displaying rooms
+    @IBOutlet var homeTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        scansCard.layer.cornerRadius = 10
-        scansCardTwo.layer.cornerRadius = 10
-        scansCardThree.layer.cornerRadius = 10
-        scansCardFour.layer.cornerRadius = 10
-        scansCardFive.layer.cornerRadius = 10
         
+        // Load default rooms
+        roomDataManager.loadDefaultRooms()
         
-        let allScannedModels = ScannedModelManager().getAllScannedModels()
-        for model in allScannedModels {
-            print("Model Name: \(model.modelName)")
-            print("File Path: \(model.filePath)")
+        // Set data source for the table view
+        homeTableView.dataSource = self
+        
+        // Reload the table view to reflect any loaded data
+        homeTableView.reloadData()
+        
+        // Debug print to see the loaded rooms and their details
+        let allRoomCards = roomDataManager.getAllRooms()
+        for card in allRoomCards {
+            print("Room Name: \(card.name), Model Count: \(card.models.count)")
+            for model in card.models {
+                print("Model Name: \(model.modelName)")
+            }
             print("------------")
         }
-        print("no models")
-    }
-
-
-    @IBAction func ButtonTapped(_ sender: UIBarButtonItem) {
-        
-        let newAlert = UIAlertController(title: "Room name", message: "Enter rooom name", preferredStyle: .alert)
-        
-        newAlert.addAction(UIAlertAction(title: "Done", style: .default))
-        
-        newAlert.addAction(UIAlertAction(title: "Cancel", style: .default))
-        
-        newAlert.addTextField()
-        
-        self.present(newAlert, animated: true)
-    }
-}
-
-
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myScanImages.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MyCollectionViewCell
-        
-        cell.myScanImage.image = UIImage(named: myScanImages[indexPath.row])
-        
+    override func viewDidAppear(_ animated: Bool) {
+        homeTableView.reloadData()
+    }
+
+    // Number of sections in the table view (one section per room)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return roomDataManager.rooms.count
+    }
+    
+    // Number of rows in each section (one row per room)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1 // Keeps one cell per section for simplicity; modify if listing models per room
+    }
+
+    // Configure cells in the table view
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath) as! HomeTableCellTableViewCell
+        let room = roomDataManager.rooms[indexPath.section]
+        cell.cellLabel.text = room.name
+        cell.homeImageView.image = room.image
+        cell.delegate = self
         return cell
     }
-    
-    
-}
 
+    // Action when the add button is tapped
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Enter room name", message: nil, preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Type something here..."
+        }
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] action in
+            if let textField = alertController.textFields?.first, let inputText = textField.text, !inputText.isEmpty {
+                roomDataManager.addRoom(Room(id: UUID().uuidString,name: inputText, image: UIImage(named: "defaultImage") ?? UIImage()))
+                homeTableView.reloadData() // Reload the table view to display the new room
+            }
+        }
+        alertController.addAction(submitAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+
+    // Prepare for segue to the detail view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openedRoom",
+           let destinationVC = segue.destination as? ScansViewController,
+           let cell = sender as? HomeTableCellTableViewCell,
+           let indexPath = homeTableView.indexPath(for: cell) {
+            let room = roomDataManager.rooms[indexPath.section]
+            destinationVC.roomId = room.id // Assuming room name uniquely identifies a room
+        }
+    }
+
+    // Delegate method triggered when a cell is tapped
+    func didtapCard(for cell: HomeTableCellTableViewCell) {
+        performSegue(withIdentifier: "openedRoom", sender: cell)
+    }
+}
